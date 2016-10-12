@@ -20,10 +20,11 @@ describe("RequestMiddlewareFramework", function() {
       }
       var response = { body: context.responseBody };
       callback(null, response, response.body);
+      return "request";
     });
     context.mockedRequest.defaults = chai.spy(function(requester) {
       context.overriddenRequest = chai.spy(function(options, callback) {
-        requester(options, callback);
+        return requester(options, callback);
       });
       return context.overriddenRequest;
     });
